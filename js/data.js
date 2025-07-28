@@ -451,7 +451,7 @@ const cars = [
   },
   {
     id: "26",
-    brand: "Tayota",
+    brand: "Toyota",
     model: "Sienna",
     banType: "Minivan",
     odometer: 22000,
@@ -469,7 +469,7 @@ const cars = [
   },
   {
     id: "27",
-    brand: "Tayota",
+    brand: "Toyota",
     model: "Prius",
     banType: "Liftbek",
     odometer: 188293,
