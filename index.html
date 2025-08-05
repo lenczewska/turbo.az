@@ -11,7 +11,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-
 <body class="bg-[url('./assets/img/Без названия.png')]">
     <header class="first bg-white w-full h-[45px] flex gap-x-[30px] justify-around align-middle relative z-10">
         <div class="left flex items-center justify-center gap-x-[30px]">
@@ -21,21 +20,24 @@
         </div>
 
         <div class="right flex items-center justify-center gap-x-[30px]">
-            <span class="text-black">Dəstək: <span class="cursor-pointer  hover:text-red-500 ">(012)
+            <span class="">Dəstək: <span class="cursor-pointer  hover:text-red-500 ">(012)
                     526-47-47</span></span>
             <span class="text-gray-400 text-center hover:text-red-500 cursor-pointer">Yardım</span>
             <span class="text-gray-400 text-center hover:text-red-500 cursor-pointer"><i
-                    class="fa-solid fa-heart"></i>Seçilmişlər</span>
+                    class="fa-solid fa-heart"></i><a href="./pages/wishlist.html">Seçilmişlər</a></span>
             <span class="text-gray-400 text-center hover:text-red-500 flex gap-[10px]"><svg
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6 cursor-pointer">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg> Giriş</span>
+
+            <div id="theme" onclick="dayNight()"></div>
+
         </div>
     </header>
 
-    <header class=" second bg-[#CA1016] w-full h-[60px] flex items-center justify-around gap-[20px] relative z-10 ">
+    <header class=" second-h bg-[#CA1016] w-full h-[60px] flex items-center justify-around gap-[20px] relative z-10 ">
         <div class="left flex gap-[12px] items-center ml-[55px]  text-white">
             <span class="font-black text-xl text-white">TURBO.AZ</span>
             <span class="hover:text-gray-300 cursor-pointer">Bütün elanlar</span>
@@ -62,7 +64,6 @@
                 </div>
             </div>
 
-
             <div class="relative group z-200">
                 <span class="hover:text-gray-300 cursor-pointer pb-[10px] ">İcarə</span>
                 <div
@@ -86,149 +87,139 @@
             Yeni elan</button>
     </header>
 
-    <div class="relative w-full min-h-screen flex justify-center bg-gray-100 ">
 
-        <div class="fixed left-0 top-0 h-screen w-[220px] hidden xl:block z-0">
-            <img src="/assets/img/Без названия.png" class="w-full h-full object-cover object-[45%_55%]" />
+
+
+
+    <main class="relative  bg-[#EBEDF3] flex flex-col gap-[10px] pt-[40px] max-w-[1000px] w-full mx-auto">
+
+        <div class="filters flex flex-col gap-[10px]  px-[20px]">
+            <div class="top flex items-center justify-between gap-[10px]">
+                <div class="relative marka-select w-[220px] mb-4">
+                    <input type="text" placeholder="Marka"
+                        class="marka-input w-full h-[50px] px-[10px] py-[10px]  rounded text-gray-700 bg-white" />
+                    <ul
+                        class="marka-options absolute top-[100%] mt-[20px] left-0 w-full bg-white border border-gray-300 rounded shadow-md max-h-[200px] overflow-y-scroll  hidden z-50">
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Abarth</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Audi</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Acura</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Bestune</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Chevrolet</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">C.Moto</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Ferrari</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Ford</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Mercedes</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Paz</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Jaguar</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Honggi</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Porsche</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Fusion</li>
+                        <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Kia</li>
+                    </ul>
+                </div>
+
+                <select name="" id="" disabled="disabled"
+                    class="rounded-[7px] w-[220px] h-[50px] bg-[#F5F6F9]"></select>
+                <input type="text" class="w-[220px] h-[50px] rounded-[7px] bg-white">
+
+                <div class="relative marka-select w-[220px] mb-4">
+                    <input type="text" id="cityInput" placeholder="Şəhər"
+                        class="marka-input w-full h-[50px] px-[10px] py-[10px] rounded text-gray-700 bg-white"
+                        oninput="filterCities()" onclick="showCityList()" />
+
+                    <ul id="cityList"
+                        class="marka-options absolute top-[100%] mt-[20px] left-0 w-full bg-white border border-gray-300 rounded shadow-md max-h-[200px] overflow-y-scroll z-50 hidden">
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Bakı</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Gəncə</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Sumqayıt</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Mingəçevir</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Şəki</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Şirvan</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Lənkəran</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Yevlax</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Naftalan</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Quba</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Xaçmaz</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Qəbələ</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Zaqatala</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Masallı</li>
+                        <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Salyan</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="second flex justify-between items-center gap-[10px]">
+                <div class="inp-box flex">
+                    <input type="text" placeholder="Qiymət min."
+                        class="w-[110px] cursor-text px-[10px] h-[50px] bg-white  rounded-l-[7px]">
+                    <input type="text" placeholder="max."
+                        class="w-[110px] cursor-text px-[10px] h-[50px] bg-white border-l border-[#cecece] rounded-r-[7px]">
+                </div>
+
+                <select id="currencyInput"
+                    class="w-[66px] h-[50px] rounded-[7px] bg-white text-gray-700 cursor-pointer ">
+
+                    <option value="AZN">AZN</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                </select>
+
+
+                <button id="kreditBtn"
+                    class="w-[50px] h-[50px] rounded-[7px] py-[10px] bg-white cursor-pointer ">Kredit</button>
+                <button id="barterBtn"
+                    class="w-[50px] h-[50px] rounded-[7px] py-[10px] bg-white cursor-pointer ">Barter</button>
+
+
+                <select name="" id="" class="w-[220px] rounded-[7px] h-[50px] bg-white"></select>
+
+                <div class="select-box flex">
+                    <div class="relative w-[110px]">
+                        <input id="yearInput1" type="text" placeholder="İl, min ."
+                            class="w-[110px] h-[50px] cursor-pointer bg-white border-r border-red-400  rounded-l-[7px] px-[10px] py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            autocomplete="off" />
+                        <ul id="yearOptions1"
+                            class="absolute z-10 mt-1 max-h-48 w-[110px] overflow-auto rounded-b-[7px] bg-white border border-[#8d8d8d] shadow-lg hidden">
+                        </ul>
+                    </div>
+
+                    <div class="relative w-[110px]">
+                        <input id="yearInput2" type="text" placeholder="maks."
+                            class="w-[110px] h-[50px] cursor-pointer bg-white   rounded-r-[7px] px-[10px] py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            autocomplete="off" />
+                        <ul id="yearOptions2"
+                            class="absolute z-10 mt-1 max-h-48 w-[110px] overflow-auto rounded-b-[7px] bg-white border border-[#8d8d8d] shadow-lg hidden">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-y-[10px]  px-[20px]">
+            <span>Bu gün:
+                <span class="text-blue-500 cursor-pointer">1625 yeni elan</span>
+            </span>
+
+            <div class="flex gap-[30px] items-center justify-center">
+                <span class="reset-btn cursor-pointer text-gray-500">Sıfırla</span>
+                <span class="cursor-pointer text-[#CA1016]">Daha cox filtr <i
+                        class="fa-solid fa-chevron-down"></i></span>
+                <button class="cursor-pointer bg-[#CA1016] text-[#fff] w-[130px] h-[50px] rounded-[7px]">Elanları
+                    göstər</button>
+            </div>
+        </div>
+
+        <div class=" premium  p-[20px]">
+            <span class=" text-center cursor-text">Premium Elanlar</span>
         </div>
 
 
-        <div class="fixed right-0 top-0 h-screen w-[220px] hidden xl:block z-0">
-            <img src="/assets/img/Без названия.png" class="w-full h-full object-cover object-[55%_100%]" />
+        <div class="cards mr-[10px] ml-[10px]  ">
+            <div id="cardContainer" class=" flex flex-wrap gap-[10px]"></div>
         </div>
 
-
-        <main class="relative  bg-[#EBEDF3] flex flex-col gap-[10px] pt-[40px] max-w-[1000px] w-full mx-auto">
-
-            <div class="filters flex flex-col gap-[10px]  px-[20px]">
-                <div class="top flex items-center justify-between gap-[10px]">
-                    <div class="relative marka-select w-[220px] mb-4">
-                        <input type="text" placeholder="Marka"
-                            class="marka-input w-full h-[50px] px-[10px] py-[10px]  rounded text-gray-700 bg-white" />
-
-                        <ul
-                            class="marka-options absolute top-[100%] mt-[20px] left-0 w-full bg-white border border-gray-300 rounded shadow-md max-h-[200px] overflow-y-scroll  hidden z-50">
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Abarth</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Audi</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Acura</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Bestune</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Chevrolet</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">C.Moto</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Ferrari</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Ford</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Mercedes</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Paz</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Jaguar</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Honggi</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Porsche</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Fusion</li>
-                            <li class="px-[10px] py-5 hover:bg-gray-100 cursor-pointer  ">Kia</li>
-                        </ul>
-
-                    </div>
-
-                    <select name="" id="" disabled="disabled"
-                        class="rounded-[7px] w-[220px] h-[50px] bg-[#F5F6F9]"></select>
-                    <input type="text" class="w-[220px] h-[50px] rounded-[7px] bg-white">
-
-
-                    <div class="relative marka-select w-[220px] mb-4">
-                        <input type="text" id="cityInput" placeholder="Şəhər"
-                            class="marka-input w-full h-[50px] px-[10px] py-[10px] rounded text-gray-700 bg-white"
-                            oninput="filterCities()" onclick="showCityList()" />
-
-                        <ul id="cityList"
-                            class="marka-options absolute top-[100%] mt-[20px] left-0 w-full bg-white border border-gray-300 rounded shadow-md max-h-[200px] overflow-y-scroll z-50 hidden">
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Bakı</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Gəncə</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Sumqayıt</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Mingəçevir</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Şəki</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Şirvan</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Lənkəran</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Yevlax</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Naftalan</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Quba</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Xaçmaz</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Qəbələ</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Zaqatala</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Masallı</li>
-                            <li class="px-6 py-5 hover:bg-gray-100 cursor-pointer">Salyan</li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <div class="second flex justify-between items-center gap-[10px]">
-                    <div class="inp-box flex">
-                        <input type="text" placeholder="Qiymət min."
-                            class="w-[110px] px-[10px] h-[50px] bg-white  rounded-l-[7px]">
-                        <input type="text" placeholder="max."
-                            class="w-[110px] px-[10px] h-[50px] bg-white border-l border-[#cecece] rounded-r-[7px]">
-                    </div>
-
-                    <select id="currencyInput" class="w-[66px] h-[50px] rounded-[7px] bg-white text-gray-700">
-
-                        <option value="AZN">AZN</option>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                    </select>
-
-
-                    <button id="kreditBtn" class="w-[50px] h-[50px] rounded-[7px] py-[10px] bg-white">Kredit</button>
-                    <button id="barterBtn" class="w-[50px] h-[50px] rounded-[7px] py-[10px] bg-white">Barter</button>
-
-
-                    <select name="" id="" class="w-[220px] rounded-[7px] h-[50px] bg-white"></select>
-
-                    <div class="select-box flex">
-                        <div class="relative w-[110px]">
-                            <input id="yearInput1" type="text" placeholder="İl, min."
-                                class="w-[110px] h-[50px] cursor-pointer bg-white border-r border-red-400  rounded-l-[7px] px-[10px] py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                autocomplete="off" />
-                            <ul id="yearOptions1"
-                                class="absolute z-10 mt-1 max-h-48 w-[110px] overflow-auto rounded-b-[7px] bg-white border border-[#8d8d8d] shadow-lg hidden">
-                            </ul>
-                        </div>
-
-                        <div class="relative w-[110px]">
-                            <input id="yearInput2" type="text" placeholder="maks." 
-                                class="w-[110px] h-[50px] cursor-pointer bg-white   rounded-r-[7px] px-[10px] py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                autocomplete="off" />
-                            <ul id="yearOptions2"
-                                class="absolute z-10 mt-1 max-h-48 w-[110px] overflow-auto rounded-b-[7px] bg-white border border-[#8d8d8d] shadow-lg hidden">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex items-center justify-between gap-y-[10px]  px-[20px]">
-                <span>Bu gün:
-                    <span class="text-blue-500 cursor-pointer">1625 yeni elan</span>
-                </span>
-
-                <div class="flex gap-[30px] items-center justify-center">
-                    <span class="reset-btn cursor-pointer text-gray-500">Sıfırla</span>
-                    <span class="cursor-pointer text-[#CA1016]">Daha cox filtr <i
-                            class="fa-solid fa-chevron-down"></i></span>
-                    <button class="cursor-pointer bg-[#CA1016] text-[#fff] w-[130px] h-[50px] rounded-[7px]">Elanları
-                        göstər</button>
-                </div>
-            </div>
-
-            <div class="bg-[#F1F3F7]  p-[20px]">
-                <span class=" text-center">Premium Elanlar</span>
-            </div>
-
-
-            <div class="cards mr-[10px] ml-[10px]  ">
-                <div id="cardContainer" class="flex flex-wrap gap-[10px]"></div>
-            </div>
-
-        </main>
-    </div>
-
+    </main>
 
 
     <script src="./js/data.js"></script>
