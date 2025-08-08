@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/theme.css">
 </head>
 
 <body>
@@ -85,11 +86,12 @@
         <button
             class="bg-[#7ED321] text-white flex items-center gap-[10px] w-[110px] rounded-[8px] mr-[55px] h-[40px] py-[5px] px-[1px]"><img
                 class="w-[20px] h-[20px] mx-[3px]"
-                src="./assets/img/add-new-1d8da7d6ddb04b4215161c0fea37f8c521de2f7b730a9b5f085244ac074ffcd6.svg " alt="">
+                src="../assets/img/add-new-1d8da7d6ddb04b4215161c0fea37f8c521de2f7b730a9b5f085244ac074ffcd6.svg "
+                alt="">
             Yeni elan</button>
     </header>
     <main>
-        <div id="detailsContainer" class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow rounded-xl"></div>
+        <div id="detailsContainer" class="max-w-3xl mx-auto p-4"></div>
 
     </main>
 
@@ -98,6 +100,33 @@
 
     <script src="../js/data.js"></script>
     <script src="../js/script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const car = JSON.parse(localStorage.getItem('selectedCar'));
+            const container = document.getElementById('detailsContainer');
+
+            if (car && container) {
+                container.innerHTML = `
+      <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg p-6">
+        <img src="${car.images[0]}" alt="${car.brand} ${car.model}" class="w-full h-[300px] object-cover rounded-t-xl mb-6" />
+        <h1 class="text-3xl font-bold mb-4">${car.brand} ${car.model} (${car.year})</h1>
+        <p class="mb-2"><strong>Ban Type:</strong> ${car.banType}</p>
+        <p class="mb-2"><strong>Engine:</strong> ${car.engine} L</p>
+        <p class="mb-2"><strong>Odometer:</strong> ${car.odometer} ${car.odometerUnit}</p>
+        <p class="mb-2 text-red-600 font-semibold text-xl"><strong>Price:</strong> ${car.price} ${car.currency}</p>
+        <p class="mb-2"><strong>City:</strong> ${car.city}</p>
+        <p class="mb-2"><strong>Credit:</strong> ${car.credit ? 'Yes' : 'No'}</p>
+        <p><strong>Barter:</strong> ${car.barter ? 'Yes' : 'No'}</p>
+      </div>
+    `;
+            } else if (container) {
+                container.innerHTML = `<p class="text-red-500">Car data not found.</p>`;
+            }
+        });
+
+
+    </script>
 
 </body>
 

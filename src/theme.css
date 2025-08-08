@@ -1,0 +1,58 @@
+
+.fa-moon,
+.fa-sun {
+  color: #919191;
+}
+
+:root {
+  --bg: #e1e1e1;
+  --txt: #2c2c2c;
+  --headerS: #ffffff;
+  --headerF: #CA1016;
+  --card: #ffffff;
+  --border:#ffffff;
+  
+}
+
+.dark {
+  --bg: #000000;
+  --txt: #b9babd;
+  --headerS:  #000;
+  --headerF: #CA1016;
+  --card:#0000;
+  --border: #6c6c6c;
+}
+
+.first{
+  background-color: var(--headerS);
+  color: var(--txt);
+}
+
+.second-h{
+  background-color: var(--headerF);
+}
+
+main{
+  background-color: var(--bg);
+}
+
+body{
+    background-color: var(--bg);
+}
+
+.premium{
+    background-color: var(--bg);
+    color: var(--txt);
+    border-top: 1px solid var(--border);
+
+}
+
+.card{
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+
+.modal-open {
+    overflow: hidden;
+  }

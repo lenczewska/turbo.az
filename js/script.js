@@ -1,20 +1,36 @@
+
+const theme = document.getElementById('theme');
+let flag = false
+
+theme.innerHTML = '<i class="fa-regular fa-sun cursor-pointer"></i>';
+
+function dayNight() {
+  flag = !flag;
+  theme.innerHTML = flag
+    ? '<i class="fa-regular fa-moon cursor-pointer"></i>'
+    : '<i class="fa-regular fa-sun cursor-pointer"></i>';
+  document.documentElement.classList.toggle('dark');
+}
+
 function renderCards(carArray) {
+  console.log('renderCards called with', carArray.length, 'items');
+
   const container = document.getElementById("cardContainer");
   container.innerHTML = "";
 
   carArray.forEach(car => {
     const card = document.createElement("div");
-    card.className = "rounded-xl shadow-md overflow-hidden w-[235px]";
+    card.className = "shadow-md w-[250px] h-[310px] rounded-xl overflow-hidden bg-white cursor-pointer";
 
     card.innerHTML = `
-      <div class="card  relative">
-        <div class="absolute top-2 right-2 z-10 cursor-pointer heart-icon text-gray-400 text-xl">
+      <div class="card relative h-full flex flex-col">
+        <div class="absolute top-2 right-2 z-5 heart-icon text-gray-400 text-xl cursor-pointer">
           <i class="fa-regular fa-heart"></i>
         </div>
-        <div class="card" data-credit="${car.credit}" data-barter="${car.barter}" data-year="${car.year}">
-          <img src="${car.images[0]}" alt="${car.brand}" class="w-full h-[200px] object-cover"/>
+        <div class="card-img" data-credit="${car.credit}" data-barter="${car.barter}" data-year="${car.year}">
+          <img src="${car.images[0]}" alt="${car.brand}" class="w-full h-[200px] object-cover rounded-t-xl"/>
         </div>
-        <div class="p-4">
+        <div class="p-4 flex-grow">
           <h2 class="text-lg font-bold mb-1">${car.brand} ${car.model} (${car.year})</h2>
           <p class="text-gray-600 truncate">${car.banType} • ${car.engine}L • ${car.odometer} ${car.odometerUnit}</p>
           <p class="text-gray-800 font-semibold mt-2">${car.price} ${car.currency}</p>
@@ -25,9 +41,27 @@ function renderCards(carArray) {
 
     container.append(card);
 
+    card.addEventListener('click', () => {
+      localStorage.setItem('selectedCar', JSON.stringify(car));
+      window.open('./pages/details.html', '_blank');
+    });
+
+
     const heart = card.querySelector('.heart-icon i');
-    heart.addEventListener('click', () => {
-      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+
+    if (wishlist.some(item => item.id === car.id)) {
+      heart.classList.remove('fa-regular', 'text-gray-400');
+      heart.classList.add('fa-solid', 'text-red-500');
+    } else {
+      heart.classList.remove('fa-solid', 'text-red-500');
+      heart.classList.add('fa-regular', 'text-gray-400');
+    }
+
+
+    heart.addEventListener('click', (e) => {
+      e.stopPropagation();
 
       if (heart.classList.contains('fa-regular')) {
         heart.classList.remove('fa-regular', 'text-gray-400');
@@ -45,26 +79,11 @@ function renderCards(carArray) {
         localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
       }
     });
+
   });
 }
 
 renderCards(cars);
-
-
-
-
-//day night
-const theme = document.getElementById('theme');
-let flag = false
-
-function dayNight() {
-  flag = !flag
-  theme.innerHTML = flag ? '<i class="fa-regular fa-moon cursor-pointer"></i>' :
-    '<i class="fa-regular fa-sun cursor-pointer "></i>'
-  document.documentElement.classList.toggle('dark')
-}
-dayNight()
-
 
 
 function toggleWishlist(car) {
@@ -85,16 +104,16 @@ function renderWishlist() {
   const container = document.getElementById('wishlistContainer');
   if (!container) return;
 
-  container.innerHTML = ""; // очищаем перед повторным рендером
+  container.innerHTML = "";
 
   const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
   wishlist.forEach((car, index) => {
     const card = document.createElement('div');
-    card.className = "bg-white rounded-xl shadow  w-[230px]";
+    card.className = "bg-white shadow w-[250px] h-[310px] rounded-xl overflow-hidden";
 
     card.innerHTML = `
-      <div class="relative">
+      <div class="relative ">
         <div class="absolute top-2 right-2 z-10 cursor-pointer heart-icon text-red-500 text-xl">
           <i class="fa-solid fa-heart"></i>
         </div>
@@ -120,27 +139,6 @@ function renderWishlist() {
     container.appendChild(card);
   });
 }
-
-
-const container = document.getElementById('detailsContainer');
-const car = JSON.parse(localStorage.getItem('selectedCar'));
-
-if (car) {
-  container.innerHTML = `
-    <img src="${car.images[0]}" class="w-full h-[300px] object-cover rounded-t-xl mb-4">
-    <h2 class="text-2xl font-bold mb-2">${car.brand} ${car.model} (${car.year})</h2>
-    <p class="text-gray-600 mb-2">${car.banType}</p>
-    <p class="text-gray-600 mb-2">${car.engine} L, ${car.odometer} ${car.odometerUnit}</p>
-    <p class="text-gray-800 font-semibold text-xl mb-2">${car.price} ${car.currency}</p>
-    <p class="text-sm text-gray-500">Şəhər: ${car.city}</p>
-    <p class="mt-4"><strong>Kredit:</strong> ${car.credit ? 'Bəli' : 'Xeyr'}</p>
-    <p><strong>Barter:</strong> ${car.barter ? 'Bəli' : 'Xeyr'}</p>
-  `;
-} else {
-  container.innerHTML = `<p class="text-red-500">Məlumat tapılmadı.</p>`;
-}
-
-
 
 
 
@@ -368,8 +366,74 @@ setupCityFilter();
 setupCurrencyFilter();
 setupKreditBarterFilter();
 setupResetFilter();
+const newCarBtn = document.getElementById('newCarBtn');
+const modal = document.getElementById('modal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const newCarForm = document.getElementById('newCarForm');
+const cardContainer = document.getElementById('cardContainer');
+
+newCarBtn.addEventListener('click', (e) => {
+  e.preventDefault(); 
+  modal.classList.remove('hidden');
+});
+
+closeModalBtn.addEventListener('click', () => {
+  modal.classList.add('hidden');
+});
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.classList.add('hidden');
+  }
+});
 
 
+newCarForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(newCarForm);
+
+  const carData = {
+    brand: formData.get('brand')?.trim() || '',
+    model: formData.get('model')?.trim() || '',
+    banType: formData.get('banType')?.trim() || '',
+    odometer: parseFloat(formData.get('odometer')) || 0,
+    city: formData.get('city')?.trim() || '',
+    engine: parseFloat(formData.get('engine')) || 0,
+    year: formData.get('year')?.trim() || '',
+    price: parseFloat(formData.get('price')) || 0,
+    currency: formData.get('currency')?.trim() || '',
+    image: formData.get('image')?.trim() || '',
+    kredit: formData.get('kredit') || '',
+    barter: formData.get('barter') || ''
+  };
 
 
+  
+  const isValid = Object.values(carData).every(value => value !== '' && value !== 0);
 
+  if (!isValid) {
+    alert("Zəhmət olmasa bütün sahələri doldurun.");
+    return;
+  }
+
+  const card = document.createElement('div');
+  card.className = "shadow-md w-[250px] h-[310px] rounded-xl overflow-hidden bg-white cursor-pointer flex flex-col";
+
+  card.innerHTML = `
+    <div class="relative h-full flex flex-col">
+      <img src="${carData.image || 'https://via.placeholder.com/250x200?text=No+Image'}" alt="${carData.brand}" class="w-full h-[200px] object-cover rounded-t-xl"/>
+      <div class="p-4 flex-grow">
+        <h2 class="text-lg font-bold mb-1">${carData.brand} ${carData.model} (${carData.year})</h2>
+        <p class="text-gray-600 truncate">${carData.banType} • ${carData.engine}L • ${carData.odometer} km</p>
+        <p class="text-gray-800 font-semibold mt-2">${carData.price} ${carData.currency}</p>
+        <p class="text-sm text-gray-500">${carData.city}</p>
+        <p class="text-sm text-gray-500">Kredit: ${carData.kredit}, Barter: ${carData.barter}</p>
+      </div>
+    </div>
+  `;
+
+  cardContainer.appendChild(card);
+  modal.classList.add('hidden');
+  newCarForm.reset();
+});

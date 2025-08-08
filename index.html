@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/theme.css">
 </head>
 
 <body class="bg-[url('./assets/img/Без названия.png')]">
@@ -80,18 +80,117 @@
             </div>
         </div>
 
-        <button
-            class="bg-[#7ED321] text-white flex items-center gap-[10px] w-[110px] rounded-[8px] mr-[55px] h-[40px] py-[5px] px-[1px]"><img
+        <button id="newCarBtn"
+            class="bg-[#7ED321] text-white flex cursor-pointer items-center gap-[10px] w-[110px] rounded-[8px] mr-[55px] h-[40px] py-[5px] px-[1px]"><img
                 class="w-[20px] h-[20px] mx-[3px]"
                 src="./assets/img/add-new-1d8da7d6ddb04b4215161c0fea37f8c521de2f7b730a9b5f085244ac074ffcd6.svg " alt="">
             Yeni elan</button>
+
+      <div id="modal" class="fixed inset-0 z-[9999] bg-gray-300/40 backdrop-blur-sm flex items-center justify-center hidden">
+  <div class="bg-white rounded-lg shadow-lg max-w-[896px] w-[91.666%] p-[32px] relative overflow-auto max-h-[80vh]">
+    
+    <button id="closeModalBtn"
+      class="absolute top-[16px] right-[16px] text-[#4B5563] hover:text-[#111827] text-[24px] font-bold">
+      &times;
+    </button>
+
+    <h2 class="text-[24px] font-bold mb-[24px] text-center">Yeni maşın elavə et</h2>
+
+    <form id="newCarForm" class="grid grid-cols-2 gap-[24px]">
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Marka</label>
+        <input type="text" name="brand" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Ölçü</label>
+        <input type="text" name="model" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Vahidi</label>
+        <input type="text" name="unit" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Yürüş</label>
+        <input type="number" name="odometer" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Şəhər</label>
+        <input type="text" name="city" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Ban Tipi</label>
+        <input type="text" name="banType" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Mühərrik</label>
+        <input type="number" step="0.1" name="engine" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">İl</label>
+        <input type="text" name="year" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Qiymət</label>
+        <input type="number" name="price" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Valyuta</label>
+        <input type="text" name="currency" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Kredit</label>
+        <div class="flex gap-[16px]">
+          <label class="flex items-center gap-[6px]">
+            <input type="radio" name="kredit" value="var" class="accent-green-500" />
+            <span>Var</span>
+          </label>
+          <label class="flex items-center gap-[6px]">
+            <input type="radio" name="kredit" value="yox" class="accent-green-500" />
+            <span>Yox</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Barter</label>
+        <div class="flex gap-[16px]">
+          <label class="flex items-center gap-[6px]">
+            <input type="radio" name="barter" value="var" class="accent-green-500" />
+            <span>Var</span>
+          </label>
+          <label class="flex items-center gap-[6px]">
+            <input type="radio" name="barter" value="yox" class="accent-green-500" />
+            <span>Yox</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <label class="font-semibold mb-[4px]">Şəkil</label>
+        <input type="url" name="image" class="border border-gray-300 rounded-[6px] px-[12px] py-[8px] w-[300px] focus:outline-none focus:ring-2 focus:ring-green-400" />
+      </div>
+
+      <div class="col-span-2 text-center">
+        <button type="submit" class="bg-green-500 text-white py-[12px] px-[32px] rounded-[8px] hover:bg-green-600 transition mt-[24px]">
+          Əlavə et
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
     </header>
 
-
-
-
-
-    <main class="relative  bg-[#EBEDF3] flex flex-col gap-[10px] pt-[40px] max-w-[1000px] w-full mx-auto">
+    <main class="relative  bg-[#EBEDF3] flex flex-col  gap-[10px] pt-[40px] max-w-[1050px] w-full mx-auto">
 
         <div class="filters flex flex-col gap-[10px]  px-[20px]">
             <div class="top flex items-center justify-between gap-[10px]">
